@@ -160,7 +160,7 @@ def sign_up_account(browser, tab):
                 break
             if tab.ele("@data-index=0"):
                 logging.info("正在获取邮箱验证码...")
-                code = email_handler.get_verification_code()
+                code = email_handler.get_verification_code(account)
                 if not code:
                     logging.error("获取验证码失败")
                     return False
@@ -196,6 +196,9 @@ def sign_up_account(browser, tab):
             usage_info = usage_ele.text
             total_usage = usage_info.split("/")[-1].strip()
             logging.info(f"账户可用额度上限: {total_usage}")
+        else:
+            logging.error("无法获取账户额度信息")
+            return False
     except Exception as e:
         logging.error(f"获取账户额度信息失败: {str(e)}")
 
@@ -218,7 +221,6 @@ class EmailGenerator:
     ):
         configInstance = Config()
         configInstance.print_config()
-        self.domain = configInstance.get_domain()
         self.default_password = password
         self.default_first_name = self.generate_random_name()
         self.default_last_name = self.generate_random_name()
@@ -232,10 +234,17 @@ class EmailGenerator:
         return first_letter + rest_letters
 
     def generate_email(self, length=8):
-        """生成随机邮箱地址"""
-        random_str = "".join(random.choices("abcdefghijklmnopqrstuvwxyz", k=length))
-        timestamp = str(int(time.time()))[-6:]  # 使用时间戳后6位
-        return f"{random_str}{timestamp}@{self.domain}"
+        """获取可用的邮箱地址"""
+        try:
+            email_handler = EmailVerificationHandler()
+            email_handler._create_mailbox()
+            email_list = email_handler._get_email_list()
+            if email_list and len(email_list) > 0:
+                return email_list[-1]  # 直接返回最后一个邮箱地址
+            raise Exception("无法获取可用的邮箱地址")
+        except Exception as e:
+            logging.error(f"获取邮箱地址失败: {str(e)}")
+            raise
 
     def get_account_info(self):
         """获取完整的账号信息"""
@@ -264,7 +273,6 @@ if __name__ == "__main__":
         login_url = "https://authenticator.cursor.sh"
         sign_up_url = "https://authenticator.cursor.sh/sign-up"
         settings_url = "https://www.cursor.com/settings"
-        mail_url = "https://tempmail.plus"
 
         logging.info("正在生成随机账号信息...")
         email_generator = EmailGenerator()
