@@ -1,48 +1,50 @@
 # Công Cụ Tự Động Hóa Cursor Pro
 
-## Lời Nhắc
-Gần đây có người mang phần mềm này bán trên các trang thương mại, việc này nên hạn chế. Không phải cái gì cũng cần kiếm tiền.
+README cũng có sẵn bằng: [中文](./README.md), [English](./README.EN.md)
 
-## Tuyên Bố Giấy Phép
-Dự án này sử dụng giấy phép [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/).  
-Điều đó có nghĩa là bạn có thể:  
-- **Chia sẻ** — Sao chép và phân phối tác phẩm này trên mọi phương tiện hoặc định dạng.  
-Nhưng phải tuân thủ các điều kiện sau:
-- **Phi thương mại** — Không được sử dụng tác phẩm này cho mục đích thương mại.
+## Tính Năng
+Đăng ký tài khoản tự động, làm mới token tự động, hoạt động không cần can thiệp.
 
-## Giới Thiệu Tính Năng
-Tự động đăng ký tài khoản, tự động làm mới token, giải phóng đôi tay.
-
-## Địa Chỉ Tải Về
+## Tải Về
 [https://github.com/chendeben/cursor-auto-free/releases](https://github.com/chendeben/cursor-auto-free/releases)
 
 ## Lưu Ý Quan Trọng
-1. **Hãy đảm bảo bạn đã cài đặt trình duyệt Chrome. Nếu chưa, [tải về tại đây](https://www.google.com/intl/en_pk/chrome/).**  
-2. **Bạn cần đăng nhập vào tài khoản, dù tài khoản có hiệu lực hay không, đăng nhập là bắt buộc.**  
-3. **Cần có kết nối mạng ổn định, ưu tiên sử dụng máy chủ nước ngoài. Không bật proxy toàn cầu.**
+1. **Hãy đảm bảo bạn đã cài đặt trình duyệt Chrome. Nếu chưa, [nhấp vào đây để tải về](https://www.google.com/chrome/)**
+2. **Bạn cần đăng nhập vào tài khoản, dù tài khoản có hiệu lực hay không, đăng nhập là bắt buộc**
+3. **Cần có kết nối mạng ổn định, ưu tiên sử dụng máy chủ nước ngoài. Không bật proxy toàn cầu**
 
-## Hướng Dẫn Cấu Hình
-Không cần cấu hình để sử dụng trực tiếp.
-Tải tệp `.env.example` về thư mục gốc của chương trình và đổi tên thành `.env`.
+## Cách Chạy
 
-## Hướng Dẫn Chạy
-### Hướng Dẫn Theo Nền Tảng
-#### Cấu Hình Biến Môi Trường
-
-Bạn có thể cấu hình các tùy chọn sau trong tệp `.env`:
-
+### Phiên Bản Mac
+1. Mở terminal và điều hướng đến thư mục ứng dụng
+2. Chạy lệnh để cấp quyền thực thi cho tệp:
 ```bash
-# Cấu Hình Tùy Chọn
-HEADLESS=true       # Bật chế độ không giao diện (mặc định: false)
-PROXY='http://127.0.0.1:7890'  # Địa chỉ máy chủ proxy (tùy chọn)
+chmod +x ./CursorPro
 ```
+3. Chạy chương trình:
+   - Trong terminal:
+```bash
+./CursorPro
+```
+   - Hoặc nhấp đúp trong Finder
 
-Dự án này được sửa đổi từ [gpt-cursor-auto](https://github.com/chengazhen/cursor-auto-free), với những thay đổi về phần nhận email. Hiện nay đã có API hệ thống email tích hợp sẵn, không cần cấu hình email nữa, và tự động sử dụng email tạm thời để nhận mã xác thực.
+
+Lưu ý: Nếu bạn gặp vấn đề sau; [Giải pháp](https://sysin.org/blog/macos-if-crashes-when-opening/)
+
+
+![image](./screen/c29ea438-ee74-4ba1-bbf6-25e622cdfad5.png)
+
+
+### Phiên Bản Windows
+Đơn giản chỉ cần nhấp đúp vào `CursorPro.exe` để chạy
+
+
+## Cách Xác Minh Hoạt Động
+**Sau khi chạy script, khởi động lại trình soạn thảo của bạn. Bạn sẽ biết nó hoạt động khi tài khoản hiển thị trong hình ảnh bên dưới khớp với tài khoản trong nhật ký đầu ra của script của bạn.**
+![image](./screen/截屏2025-01-04%2009.44.48.png)
+
+
+Dự án này được chỉnh sửa từ [gpt-cursor-auto](https://github.com/chengazhen/cursor-auto-free). Phần truy xuất email đã được sửa đổi với API hệ thống email tích hợp, loại bỏ nhu cầu cấu hình email và tự động sử dụng email tạm thời để nhận mã xác minh.
 
 ## Nhật Ký Cập Nhật
-- **2025-01-09**: Thêm log, chức năng tự xây dựng.  
-- **2025-01-10**: Tối ưu hóa cấu hình email. 
-- **2025-01-11**: Thêm chế độ không giao diện và cấu hình proxy thông qua tệp .env.
-- **2025-01-12**: Loại bỏ yêu cầu cấu hình email.
-
-Lấy cảm hứng từ [gpt-cursor-auto](https://github.com/hmhm2022/gpt-cursor-auto).
+- **2025-01-21**: Loại bỏ yêu cầu cấu hình 
