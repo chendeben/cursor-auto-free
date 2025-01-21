@@ -3,7 +3,8 @@ name: Build Executables
 on:
   push:
     tags:
-      - 'v*'  # 添加标签触发条件，匹配 v1.0.0 这样的标签
+      - 'v*'  # 仍然保留标签触发条件，匹配 v1.0.0 这样的标签
+  workflow_dispatch:  # 允许手动触发构建
 
 jobs:
   build-windows:
