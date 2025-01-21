@@ -1,87 +1,38 @@
 # Cursor Pro Automation Tool User Guide
 
-## Note
-Recently, some users have sold this software on platforms like Xianyu. Please avoid such practices—there’s no need to earn money this way.
-
-## License
-This project is licensed under [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/).  
-This means you may:  
-- **Share** — Copy and redistribute the material in any medium or format.  
-But you must comply with the following conditions:
-- **Non-commercial** — You may not use the material for commercial purposes.
-
 ## Features
-Automated account registration and token refreshing to free your hands.
+Automatic account registration, automatic token refresh, hands-free operation.
 
-## Download Link
-[https://github.com/chengazhen/cursor-auto-free/releases](https://github.com/chengazhen/cursor-auto-free/releases)
+## Download
+[https://github.com/chendeben/cursor-auto-free/releases](https://github.com/chendeben/cursor-auto-free/releases)
 
 ## Important Notes
-1. **Ensure you have Chrome installed. If not, [download here](https://www.google.com/intl/en_pk/chrome/).**  
-2. **You must log into your account, regardless of its validity. Logged-in is mandatory.**  
-3. **A stable internet connection is required, preferably via an overseas node. Do not enable global proxy.**
+1. **Please ensure Chrome browser is installed. If not, [click here to download](https://www.google.com/chrome/)**
+2. **Account login is required, regardless of whether the account is valid or not**
+3. **Stable network connection is needed, preferably using foreign servers. Do not enable global proxy**
 
 ## Configuration Instructions
-- Use a Cloudflare domain email. Search for instructions if needed.  
-- **(Very Important)** Use tempmail.plus email. Search for instructions if needed.  
-- Forward Cloudflare emails to tempmail.plus.  
-- Download the `.env.example` file to the program's root directory and rename it to `.env`.
+No configuration is required to use directly.
+Download the `.env.example` file to the program's root directory and rename it to `.env`.
 
-### Example `.env` file:
+## Running Instructions
+### Platform-specific Instructions
+#### Environment Variables Configuration
+
+You can configure the following options in the `.env` file:
+
 ```bash
-DOMAIN='xxxxx.me'    # Your email domain (search for Cloudflare email usage)
-TEMP_MAIL='xxxxxx'   # Temporary email, the target position you set in Cloudflare, using https://tempmail.plus/zh/#!
+# Optional Configuration
+HEADLESS=true       # Enable headless mode (default: false)
+PROXY='http://127.0.0.1:7890'  # Proxy server address (optional)
 ```
-Example:
-```bash
-DOMAIN='wozhangsan.me'
-TEMP_MAIL='ccxxxxcxx'
-```
-The program will randomly generate emails with the `@wozhangsan.me` suffix.
 
-## How to Run the Program
-
-### Mac
-1. Open Terminal and navigate to the application directory.  
-2. Grant execution permission:  
-```bash
-chmod +x ./CursorPro
-```  
-3. Run the program:
-   - In Terminal:  
-```bash
-./CursorPro
-```  
-   - Or double-click the file in Finder.  
-
-If errors occur, refer to [solutions](https://sysin.org/blog/macos-if-crashes-when-opening/).
-
-### Windows
-Double-click `CursorPro.exe`.
-
-## How to Verify
-After running the script, restart your editor. If the displayed account matches the log, it worked successfully.
-
-## Usage Notes
-1. Requirements:
-   - Stable internet connection.
-   - Sufficient system permissions.
-
-2. During use:
-   - Wait for the program to complete all operations.
-   - Close the program only after seeing the "script completed" message.
-
-## Common Issues
-1. Program freezes:
-   - Check your internet connection.
-   - Restart the program.
-
-## Disclaimer
-This tool is for educational and research purposes only. Users bear full responsibility for any consequences. Commercial use is strictly prohibited. Violations of the license terms may result in legal action.
+This project is modified from [gpt-cursor-auto](https://github.com/chengazhen/cursor-auto-free), with changes to the email retrieval part. It now has a built-in email system API, eliminating the need for email configuration, and automatically uses temporary email to receive verification codes.
 
 ## Update Log
 - **2025-01-09**: Added logs and auto-build feature.  
-- **2025-01-10**: Switched to Cloudflare domain email.  
+- **2025-01-10**: Optimized email configuration.  
 - **2025-01-11**: Added headless mode and proxy configuration through .env file.
+- **2025-01-12**: Removed email configuration requirements.
 
 Inspired by [gpt-cursor-auto](https://github.com/hmhm2022/gpt-cursor-auto).

@@ -14,7 +14,7 @@ Nhưng phải tuân thủ các điều kiện sau:
 Tự động đăng ký tài khoản, tự động làm mới token, giải phóng đôi tay.
 
 ## Địa Chỉ Tải Về
-[https://github.com/chengazhen/cursor-auto-free/releases](https://github.com/chengazhen/cursor-auto-free/releases)
+[https://github.com/chendeben/cursor-auto-free/releases](https://github.com/chendeben/cursor-auto-free/releases)
 
 ## Lưu Ý Quan Trọng
 1. **Hãy đảm bảo bạn đã cài đặt trình duyệt Chrome. Nếu chưa, [tải về tại đây](https://www.google.com/intl/en_pk/chrome/).**  
@@ -22,66 +22,27 @@ Tự động đăng ký tài khoản, tự động làm mới token, giải phó
 3. **Cần có kết nối mạng ổn định, ưu tiên sử dụng máy chủ nước ngoài. Không bật proxy toàn cầu.**
 
 ## Hướng Dẫn Cấu Hình
-- Cần sử dụng email theo tên miền Cloudflare. Hãy tìm hiểu cách sử dụng.  
-- **(Rất quan trọng)** Cần sử dụng email tạm thời từ tempmail.plus. Hãy tìm hiểu cách sử dụng.  
-- Chuyển tiếp email từ tên miền Cloudflare sang tempmail.plus.  
-- Tải tệp `.env.example` về thư mục gốc của chương trình và đổi tên thành `.env`.
+Không cần cấu hình để sử dụng trực tiếp.
+Tải tệp `.env.example` về thư mục gốc của chương trình và đổi tên thành `.env`.
 
-### Cấu hình tệp `.env`:
+## Hướng Dẫn Chạy
+### Hướng Dẫn Theo Nền Tảng
+#### Cấu Hình Biến Môi Trường
+
+Bạn có thể cấu hình các tùy chọn sau trong tệp `.env`:
+
 ```bash
-DOMAIN='xxxxx.me'    # Tên miền email của bạn (tự tìm hiểu cách sử dụng Cloudflare email)
-TEMP_MAIL='xxxxxx'   # Email tạm thời, là địa chỉ đích bạn đã thiết lập trong Cloudflare, sử dụng email từ https://tempmail.plus/zh/#!
+# Cấu Hình Tùy Chọn
+HEADLESS=true       # Bật chế độ không giao diện (mặc định: false)
+PROXY='http://127.0.0.1:7890'  # Địa chỉ máy chủ proxy (tùy chọn)
 ```
-Ví dụ:
-```bash
-DOMAIN='wozhangsan.me'
-TEMP_MAIL='ccxxxxcxx'
-```
-Chương trình sẽ tự tạo ngẫu nhiên email với đuôi `@wozhangsan.me`.
 
-## Cách Chạy Chương Trình
-
-### Phiên Bản Mac
-1. Mở Terminal và truy cập thư mục chứa ứng dụng.  
-2. Cấp quyền thực thi tệp:  
-```bash
-chmod +x ./CursorPro
-```  
-3. Chạy chương trình:
-   - Trong Terminal:  
-```bash
-./CursorPro
-```  
-   - Hoặc nhấp đôi vào tệp trong Finder.  
-
-Nếu gặp lỗi, tham khảo [giải pháp](https://sysin.org/blog/macos-if-crashes-when-opening/).
-
-### Phiên Bản Windows
-Nhấp đúp chuột vào tệp `CursorPro.exe`.
-
-## Xác Minh Hiệu Quả
-Sau khi chạy script, khởi động lại trình chỉnh sửa. Nếu tài khoản hiển thị giống như trong log, chương trình đã hoạt động thành công.
-
-## Lưu Ý Khi Sử Dụng
-1. Yêu cầu môi trường:
-   - Kết nối mạng ổn định.
-   - Quyền hệ thống đủ cao.
-
-2. Trong quá trình sử dụng:
-   - Chờ chương trình tự hoàn tất.
-   - Đợi thông báo "hoàn thành" trước khi đóng chương trình.
-
-## Giải Quyết Vấn Đề Thường Gặp
-1. Chương trình bị treo:
-   - Kiểm tra kết nối mạng.
-   - Khởi động lại chương trình.
-
-## Tuyên Bố Miễn Trừ
-Công cụ này chỉ dành cho mục đích học tập và nghiên cứu. Người dùng tự chịu trách nhiệm về mọi hậu quả. Nghiêm cấm sử dụng cho mục đích thương mại. Vi phạm giấy phép sẽ chịu trách nhiệm pháp lý.
+Dự án này được sửa đổi từ [gpt-cursor-auto](https://github.com/chengazhen/cursor-auto-free), với những thay đổi về phần nhận email. Hiện nay đã có API hệ thống email tích hợp sẵn, không cần cấu hình email nữa, và tự động sử dụng email tạm thời để nhận mã xác thực.
 
 ## Nhật Ký Cập Nhật
 - **2025-01-09**: Thêm log, chức năng tự xây dựng.  
-- **2025-01-10**: Chuyển sang email tên miền Cloudflare. 
-- **2025-01-11**: Thêm chức năng tự động xây dựng, thêm chức năng tự động xây dựng, thêm chức năng tự động xây dựng.
+- **2025-01-10**: Tối ưu hóa cấu hình email. 
+- **2025-01-11**: Thêm chế độ không giao diện và cấu hình proxy thông qua tệp .env.
+- **2025-01-12**: Loại bỏ yêu cầu cấu hình email.
 
 Lấy cảm hứng từ [gpt-cursor-auto](https://github.com/hmhm2022/gpt-cursor-auto).
