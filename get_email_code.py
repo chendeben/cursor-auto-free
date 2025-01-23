@@ -65,7 +65,17 @@ class EmailVerificationHandler:
         data = response.json()
         return data.get('data', [])
 
-    def _get_latest_mail_code(self, max_attempts=10, retry_interval=3):
+    def _get_latest_mail_code(self):
+        # 第一阶段：10次尝试，每次间隔3秒
+        code = self._attempt_get_code(max_attempts=10, retry_interval=3)
+        if code:
+            return code
+            
+        print("第一阶段未获取到验证码，进入第二阶段重试...")
+        # 第二阶段：100次尝试，每次间隔5秒
+        return self._attempt_get_code(max_attempts=100, retry_interval=5)
+        
+    def _attempt_get_code(self, max_attempts, retry_interval):
         for attempt in range(max_attempts):
             url = f"{self.base_url}/mail/lists?u={self.username}&a={self.auth_token}"
             response = self.session.get(url, headers=self.headers)
@@ -94,7 +104,7 @@ class EmailVerificationHandler:
                 mail_text = latest_mail.get('content', '')
                 
                 # 从邮件文本中提取指定格式的验证码
-                code_match = re.search(r">(\d{6})<", mail_text)
+                code_match = re.search(r">(d{6})<", mail_text)
                 if code_match:
                     return code_match.group(1)
             except Exception as e:
