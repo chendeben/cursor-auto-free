@@ -103,8 +103,14 @@ class EmailVerificationHandler:
                     
                 mail_text = latest_mail.get('content', '')
                 
-                # 从邮件文本中提取指定格式的验证码
-                code_match = re.search(r">(d{6})<", mail_text)
+                # 移除所有 CSS 样式和 HTML 标签
+                clean_text = re.sub(r'<style[^>]*>[^<]*</style>', '', mail_text)
+                clean_text = re.sub(r'<[^>]+>', '', clean_text)
+                # 移除多余的空白字符
+                clean_text = re.sub(r'\s+', ' ', clean_text).strip()
+                print("过滤后的邮件内容：", clean_text)
+                # 从纯文本中提取 6 位数字验证码
+                code_match = re.search(r'Your verification code is (\d{6})', clean_text)
                 if code_match:
                     return code_match.group(1)
             except Exception as e:

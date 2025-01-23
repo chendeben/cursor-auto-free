@@ -2,7 +2,7 @@ import psutil
 from logger import logging  
 import time
 
-def ExitCursor(timeout=5):
+def ExitCursor(timeout=15):
     """
     温和地关闭 Cursor 进程
     
