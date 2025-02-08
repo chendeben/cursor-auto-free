@@ -108,11 +108,15 @@ class EmailVerificationHandler:
                 clean_text = re.sub(r'<[^>]+>', '', clean_text)
                 # 移除多余的空白字符
                 clean_text = re.sub(r'\s+', ' ', clean_text).strip()
-                print("过滤后的邮件内容：", clean_text)
+                # print("过滤后的邮件内容：", clean_text)
                 # 从纯文本中提取 6 位数字验证码
-                code_match = re.search(r'Your verification code is (\d{6})', clean_text)
+                pattern = r'\b(\d{6})\b'
+                code_match = re.search(pattern, clean_text)
+
+                # code_match = re.search(r'Your verification code is (\d{6})', clean_text)
                 if code_match:
-                    return code_match.group(1)
+                    print("提取到验证码", code_match.group(0))
+                    return code_match.group(0)
             except Exception as e:
                 print(f"处理邮件内容时出错: {str(e)}")
                 time.sleep(retry_interval)
